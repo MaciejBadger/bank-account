@@ -20,6 +20,9 @@ class CreateTransactionHandler implements MessageHandlerInterface
     ) {
     }
 
+    /**
+     * @throws \Exception
+     */
     public function __invoke(CreateTransaction $command)
     {
         $wallet = $this->walletRepository->get($command->walletId);

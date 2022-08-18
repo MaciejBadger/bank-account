@@ -41,6 +41,11 @@ class Wallet
         $this->balance = $balance;
     }
 
+    public function getTransactions(): Collection
+    {
+        return $this->transactions;
+    }
+
     public function addTransaction(Transaction $transaction): void
     {
         if (!$this->transactions->contains($transaction)) {
