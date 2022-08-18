@@ -20,13 +20,13 @@ class CreateTransactionHandler implements MessageHandlerInterface
     ) {
     }
 
-    public function __invoke(CreateTransaction $createTransaction)
+    public function __invoke(CreateTransaction $command)
     {
-        $wallet = $this->walletRepository->get($createTransaction->walletId);
+        $wallet = $this->walletRepository->get($command->walletId);
 
         $transaction = new Transaction(
-            $createTransaction->amount,
-            $createTransaction->type
+            $command->amount,
+            $command->type
         );
         $wallet->addTransaction($transaction);
         $balance = $this->balanceCalculator->calculate($wallet->getBalance(), $transaction);

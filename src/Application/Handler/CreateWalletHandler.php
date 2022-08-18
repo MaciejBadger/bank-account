@@ -18,7 +18,7 @@ class CreateWalletHandler implements MessageHandlerInterface
     ) {
     }
 
-    public function __invoke(CreateWallet $createWallet)
+    public function __invoke(CreateWallet $command)
     {
         $this->walletRepository->add(new Wallet());
         $this->entityManager->flush();
