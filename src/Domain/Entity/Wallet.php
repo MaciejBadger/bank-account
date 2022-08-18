@@ -6,6 +6,7 @@ namespace App\Domain\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -22,17 +23,28 @@ class Wallet
     #[ORM\InverseJoinColumn(name: 'transaction_id', referencedColumnName: 'id', unique: true)]
     private Collection $transactions;
 
+    #[ORM\Column(type: Types::DECIMAL, scale: 2)]
+    private float $balance = 0;
+
     public function __construct()
     {
         $this->transactions = new ArrayCollection();
     }
 
-    public function addTransaction(Transaction $transaction): self
+    public function getBalance(): float
+    {
+        return $this->balance;
+    }
+
+    public function setBalance(float $balance): void
+    {
+        $this->balance = $balance;
+    }
+
+    public function addTransaction(Transaction $transaction): void
     {
         if (!$this->transactions->contains($transaction)) {
             $this->transactions->add($transaction);
         }
-
-        return $this;
     }
 }

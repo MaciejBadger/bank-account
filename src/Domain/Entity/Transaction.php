@@ -32,4 +32,14 @@ class Transaction
             );
         }
     }
+
+    public function getAmount(): float
+    {
+        return $this->amount;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
 }
