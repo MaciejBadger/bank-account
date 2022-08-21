@@ -6,6 +6,7 @@ namespace App\Presentation\Controller;
 
 use App\Application\Query\GetBalanceQuery;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -29,6 +30,6 @@ class GetBalanceController extends AbstractController
         /** @var HandledStamp $handled */
         $handled = $envelope->last(HandledStamp::class);
 
-        return new Response(json_encode(['balance' => $handled->getResult()]));
+        return new JsonResponse(['balance' => $handled->getResult()]);
     }
 }

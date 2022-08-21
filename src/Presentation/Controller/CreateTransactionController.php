@@ -6,6 +6,7 @@ namespace App\Presentation\Controller;
 
 use App\Application\Command\CreateTransaction;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -32,6 +33,6 @@ class CreateTransactionController extends AbstractController
         );
         $commandBus->dispatch($command);
 
-        return new Response(status: 201);
+        return new JsonResponse(status: 201);
     }
 }

@@ -6,6 +6,7 @@ namespace App\Presentation\Controller;
 
 use App\Application\Command\CreateWallet;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +22,6 @@ class CreateWalletController extends AbstractController
     {
         $commandBus->dispatch(new CreateWallet());
 
-        return new Response(status: 201);
+        return new JsonResponse(status: 201);
     }
 }

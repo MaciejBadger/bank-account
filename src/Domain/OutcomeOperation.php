@@ -10,7 +10,7 @@ class OutcomeOperation implements OperationInterface
     {
         if ($transactionAmount > $currentBalance) {
             throw new \Exception(
-                sprintf('Current balance equals: %s, you cannot spend more than the limit', $currentBalance)
+                sprintf('Current balance equals: %s, you cannot spend more than current balance', $currentBalance)
             );
         }
         return $currentBalance - $transactionAmount;
